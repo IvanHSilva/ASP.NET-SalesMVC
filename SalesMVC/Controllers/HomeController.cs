@@ -17,14 +17,15 @@ namespace SalesMVC.Controllers {
         }
 
         public IActionResult Index() {
-            List<Department> departments = new List<Department>();
-            departments.Add(new Department(1, "Eletrônicos"));
-            departments.Add(new Department(2, "Games"));
-            departments.Add(new Department(3, "Livros"));
-            departments.Add(new Department(4, "Moda"));
-            departments.Add(new Department(5, "Ifantil"));
+            //List<Department> departments = new List<Department>();
+            //departments.Add(new Department(1, "Eletrônicos"));
+            //departments.Add(new Department(2, "Games"));
+            //departments.Add(new Department(3, "Livros"));
+            //departments.Add(new Department(4, "Moda"));
+            //departments.Add(new Department(5, "Ifantil"));
 
-            return View(departments);
+            //return View(departments);
+            return View();
         }
 
         public IActionResult Privacy() {
