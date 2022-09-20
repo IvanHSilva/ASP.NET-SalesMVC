@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SalesMVC.Models;
 using SalesMVC.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,14 @@ namespace SalesMVC.Controllers {
         }
 
         public IActionResult Index() {
-            return View();
+            List<Department> departments = new List<Department>();
+            departments.Add(new Department(1, "Eletrônicos"));
+            departments.Add(new Department(2, "Games"));
+            departments.Add(new Department(3, "Livros"));
+            departments.Add(new Department(4, "Moda"));
+            departments.Add(new Department(5, "Ifantil"));
+
+            return View(departments);
         }
 
         public IActionResult Privacy() {
