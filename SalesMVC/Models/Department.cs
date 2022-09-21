@@ -10,8 +10,8 @@ namespace SalesMVC.Models {
 
         public Department() { }
 
-        public Department(int id, string name) {
-            Id = id;
+        public Department(string name) {
+            //Id = id;
             Name = name;
         }
 

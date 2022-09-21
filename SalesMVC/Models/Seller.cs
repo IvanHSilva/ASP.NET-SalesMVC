@@ -14,8 +14,8 @@ namespace SalesMVC.Models {
 
         public Seller() {}
 
-        public Seller(int id, string name, string email, DateTime birthdate, double baseSalary, Department department) {
-            Id = id;
+        public Seller(string name, string email, DateTime birthdate, double baseSalary, Department department) {
+            //Id = id;
             Name = name;
             Email = email;
             Birthdate = birthdate;
