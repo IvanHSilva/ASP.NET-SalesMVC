@@ -1,0 +1,34 @@
+﻿@model SalesMVC.Models.Seller
+
+@{ViewData["Title"] = "Excluir";}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3></h3>
+<div>
+    <h4>Vendedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dt>@Html.DisplayFor(model => model.Name)</dt>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dt>@Html.DisplayFor(model => model.Email)</dt>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Birthdate)</dt>
+        <dt>@Html.DisplayFor(model => model.Birthdate)</dt>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.BaseSalary)</dt>
+        <dt>@Html.DisplayFor(model => model.BaseSalary)</dt>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index">Voltar à Lista</a>
+    </form>
+    
+</div>

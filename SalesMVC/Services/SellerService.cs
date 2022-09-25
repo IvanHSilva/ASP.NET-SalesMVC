@@ -19,8 +19,17 @@ namespace SalesMVC.Services {
         }
 
         public void Insert(Seller seller) {
-            seller.Department = _context.Department.First();
             _context.Add(seller);
+            _context.SaveChanges();
+        }
+
+        public Seller FindById(int id) {
+            return _context.Seller.FirstOrDefault(s => s.Id == id);
+        }
+
+        public void Remove(int id) {
+            Seller seller = _context.Seller.Find(id);
+            _context.Seller.Remove(seller);
             _context.SaveChanges();
         }
     }
