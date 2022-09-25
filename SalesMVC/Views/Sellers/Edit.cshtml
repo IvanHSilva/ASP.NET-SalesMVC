@@ -1,6 +1,6 @@
 ﻿@model SalesMVC.Models.ViewModels.SellerFormViewModel
 @{
-    ViewData["Title"] = "Novo";
+    ViewData["Title"] = "Alterar";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -18,7 +18,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Seller.Id" />
             <div class="form-group">
                 <label asp-for="Seller.Name" class="control-label">Nome:</label>
                 <input asp-for="Seller.Name" class="form-control" />
