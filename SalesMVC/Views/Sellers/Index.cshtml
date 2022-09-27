@@ -10,8 +10,8 @@
         <tr class="success">
             <th>@Html.DisplayNameFor(model => model.Name)</th>
             <th>@Html.DisplayNameFor(model => model.Email)</th>
-            <th>@Html.DisplayNameFor(model => model.Birthdate)</th>
-            <th>@Html.DisplayNameFor(model => model.BaseSalary)</th>
+            <th style="text-align:center">@Html.DisplayNameFor(model => model.Birthdate)</th>
+            <th style="text-align:right">@Html.DisplayNameFor(model => model.BaseSalary)</th>
             <th></th>
         </tr>
     </thead>
@@ -21,8 +21,8 @@
          <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
-            <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
-            <td>@Html.DisplayFor(modelItem => item.BaseSalary)</td>
+            <td style="text-align:center">@Html.DisplayFor(modelItem => item.Birthdate)</td>
+            <td style="text-align:right">@Html.DisplayFor(modelItem => item.BaseSalary)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>

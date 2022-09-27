@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace SalesMVC.Models {
     public class Seller {
         public int Id { get; set; }
+        [Display(Name="Nome")]
         public string Name { get; set; }
+        [Display(Name = "E-Mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Display(Name = "Data Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
+        [Display(Name = "Salário-Base")]
+        //[DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:N}")]
         public double BaseSalary { get; set; }
+        [Display(Name = "Departamento")]
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
