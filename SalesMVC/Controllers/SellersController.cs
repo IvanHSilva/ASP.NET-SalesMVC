@@ -5,6 +5,7 @@ using SalesMVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace SalesMVC.Controllers {
 
@@ -18,70 +19,70 @@ namespace SalesMVC.Controllers {
             _depService = depService;
         }
 
-        public IActionResult Index() {
-            List<Seller> list = _service.FindAll();
+        public async Task<IActionResult> Index() {
+            List<Seller> list = await _service.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create() {
-            List<Department> departments = _depService.FindAll();
+        public async Task<IActionResult> Create() {
+            List<Department> departments = await _depService.FindAllAsync();
             SellerFormViewModel viewModel = new SellerFormViewModel { Departments = departments };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Seller seller) {
+        public async Task<IActionResult> Create(Seller seller) {
             if (!ModelState.IsValid) {
-                List<Department> departments = _depService.FindAll();
+                List<Department> departments = await _depService.FindAllAsync();
                 SellerFormViewModel viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
                 return View(viewModel);
             }
-            _service.Insert(seller);
+            await _service.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id) {
+        public async Task<IActionResult> Delete(int? id) {
             if (id == null) return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
-            Seller seller = _service.FindById(id.Value);
+            Seller seller = await _service.FindByIdAsync(id.Value);
             if (seller == null) return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
             return View(seller);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id) {
-            _service.Remove(id);
+        public async Task<IActionResult> Delete(int id) {
+            await _service.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id) {
+        public async Task<IActionResult> Details(int? id) {
             if (id == null) return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
-            Seller seller = _service.FindById(id.Value);
+            Seller seller = await _service.FindByIdAsync(id.Value);
             if (seller == null) return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
             return View(seller);
         }
 
-        public IActionResult Edit(int? id) {
+        public async Task<IActionResult> Edit(int? id) {
             if (id == null) return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
-            Seller seller = _service.FindById(id.Value);
+            Seller seller = await _service.FindByIdAsync(id.Value);
             if (seller == null) return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
-            List<Department> departments = _depService.FindAll();
+            List<Department> departments = await _depService.FindAllAsync();
             SellerFormViewModel viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Seller seller) {
+        public async Task<IActionResult> Edit(int id, Seller seller) {
             if (!ModelState.IsValid) {
-                List<Department> departments = _depService.FindAll();
+                List<Department> departments = await _depService.FindAllAsync();
                 SellerFormViewModel viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
                 return View(viewModel);
             }
             if (id != seller.Id) return RedirectToAction(nameof(Error), new { message = "Ids não correspondem!" });
             try {
-                _service.Update(seller);
+                await _service.UpdateAsync(seller);
                 return RedirectToAction(nameof(Index));
             } catch (ApplicationException e) {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
