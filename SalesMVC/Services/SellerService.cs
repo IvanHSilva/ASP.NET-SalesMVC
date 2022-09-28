@@ -31,9 +31,13 @@ namespace SalesMVC.Services {
         }
 
         public async Task RemoveAsync(int id) {
-            Seller seller = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(seller);
-            await _context.SaveChangesAsync();
+            try {
+                Seller seller = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(seller);
+                await _context.SaveChangesAsync();
+            } catch(DbUpdateException e) {
+                throw new IntegrityException("Não é possível excluir este vendedor, pois ele possui vendas cadastradas!");
+            }
         }
 
         public async Task UpdateAsync(Seller seller) {
